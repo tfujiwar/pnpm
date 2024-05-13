@@ -82,6 +82,7 @@ function sanitizeFilenames (filenames: Record<string, string>): SanitizeFilename
 }
 
 function tryImportIndexedDir (importFile: ImportFile, newDir: string, filenames: Record<string, string>): void {
+  console.log("tfuji: tryImportIndexedDir", newDir)
   makeEmptyDir(newDir, { recursive: true })
   const allDirs = new Set<string>()
   Object.keys(filenames)

@@ -176,6 +176,8 @@ export interface InstallationResult {
 }
 
 export async function headlessInstall (opts: HeadlessOptions): Promise<InstallationResult> {
+  console.log("tfuji: headlessInstall")
+  
   const reporter = opts.reporter
   if ((reporter != null) && typeof reporter === 'function') {
     streamParser.on('data', reporter)
@@ -823,6 +825,7 @@ async function linkAllPkgs (
     sideEffectsCacheRead: boolean
   }
 ): Promise<void> {
+  console.log("tfuji: linkAllPkgs")
   await Promise.all(
     depNodes.map(async (depNode) => {
       if (!depNode.fetching) return

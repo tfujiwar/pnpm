@@ -316,6 +316,7 @@ export type InstallCommandOptions = Pick<Config,
 } & Partial<Pick<Config, 'modulesCacheMaxAge' | 'pnpmHomeDir' | 'preferWorkspacePackages'>>
 
 export async function handler (opts: InstallCommandOptions): Promise<void> {
+  console.log("tfuji: handler")
   const include = {
     dependencies: opts.production !== false,
     devDependencies: opts.dev !== false,

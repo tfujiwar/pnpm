@@ -57,12 +57,16 @@ function createPackageImporter (
     cafsDir: string
   }
 ): ImportPackageFunction {
+  console.log("tfuji: createPackageImporter")
+
   const cachedImporterCreator = opts.importIndexedPackage
     ? () => opts.importIndexedPackage!
     : memoize(createIndexedPkgImporter)
   const packageImportMethod = opts.packageImportMethod
   const gfm = getFlatMap.bind(null, opts.cafsDir)
   return (to, opts) => {
+    // console.log("tfuji: importer")
+
     const { filesMap, isBuilt } = gfm(opts.filesResponse, opts.sideEffectsCacheKey)
     const willBeBuilt = !isBuilt && opts.requiresBuild
     const pkgImportMethod = willBeBuilt
@@ -112,6 +116,8 @@ export function createCafsStore (
     cafsLocker?: CafsLocker
   }
 ): Cafs {
+  console.log("tfuji: createCafsStore")
+
   const cafsDir = path.join(storeDir, 'files')
   const baseTempDir = path.join(storeDir, 'tmp')
   const importPackage = createPackageImporter({

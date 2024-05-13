@@ -277,6 +277,7 @@ async function update (
   dependencies: string[],
   opts: UpdateCommandOptions
 ): Promise<void> {
+  console.log("tfuji: update")
   if (opts.latest) {
     const dependenciesWithTags = dependencies.filter((name) => parseUpdateParam(name).versionSpec != null)
     if (dependenciesWithTags.length) {

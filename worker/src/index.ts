@@ -186,6 +186,7 @@ export async function readPkgFromCafs (
 export async function importPackage (
   opts: Omit<LinkPkgMessage, 'type'>
 ): Promise<{ isBuilt: boolean, importMethod: string | undefined }> {
+  // console.log("tfuji: importPackage")
   if (!workerPool) {
     workerPool = createTarballWorkerPool()
   }

@@ -119,6 +119,7 @@ export async function installDeps (
   opts: InstallDepsOptions,
   params: string[]
 ): Promise<void> {
+  console.log("tfuji: installDeps")
   if (opts.workspace) {
     if (opts.latest) {
       throw new PnpmError('BAD_OPTIONS', 'Cannot use --latest with --workspace simultaneously')

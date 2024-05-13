@@ -45,6 +45,7 @@ export async function createOrConnectStoreController (
     ctrl: StoreController
     dir: string
   }> {
+  console.log("tfuji: createOrConnectStoreController")
   const storeDir = await getStorePath({
     pkgRoot: opts.workspaceDir ?? opts.dir,
     storePath: opts.storeDir,

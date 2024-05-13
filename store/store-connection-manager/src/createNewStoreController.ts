@@ -50,6 +50,7 @@ export type CreateNewStoreControllerOptions = CreateResolverOptions & Pick<Confi
 export async function createNewStoreController (
   opts: CreateNewStoreControllerOptions
 ): Promise<{ ctrl: StoreController, dir: string }> {
+  console.log("tfuji: createNewStoreController")
   const fullMetadata = opts.resolutionMode === 'time-based' && !opts.registrySupportsTimeField
   const { resolve, fetchers } = createClient({
     customFetchers: opts.hooks?.fetchers,

@@ -37,6 +37,8 @@ export async function linkHoistedModules (
     sideEffectsCacheRead: boolean
   }
 ): Promise<void> {
+  console.log("tfuji: linkHoistedModules")
+
   // TODO: remove nested node modules first
   const dirsToRemove = difference(
     Object.keys(prevGraph),

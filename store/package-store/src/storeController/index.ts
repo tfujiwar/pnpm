@@ -30,6 +30,9 @@ export function createPackageStore (
     virtualStoreDirMaxLength: number
   }
 ): StoreController {
+
+  console.log("tfuji: createPackageStore")
+
   const storeDir = initOpts.storeDir
   const cafs = createCafsStore(storeDir, {
     cafsLocker: initOpts.cafsLocker,
