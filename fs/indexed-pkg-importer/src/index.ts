@@ -199,6 +199,8 @@ function linkOrCopy (existingPath: string, newPath: string): void {
     // In some VERY rare cases (1 in a thousand), hard-link creation fails on Windows.
     // In that case, we just fall back to copying.
     // This issue is reproducible with "pnpm add @material-ui/icons@4.9.1"
+    console.log("tfuji: existsSync(existingPath)", existsSync(existingPath))
+    console.log("tfuji: existsSync(path.dirname(newPath))", existsSync(path.dirname(newPath)))
     console.log("tfuji: before fs.copyFileSync")
     fs.copyFileSync(existingPath, newPath)
     console.log("tfuji: after fs.copyFileSync")

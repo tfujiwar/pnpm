@@ -28,14 +28,19 @@ export function importIndexedDir (
       // Keeping node_modules is needed only when the hoisted node linker is used.
       moveOrMergeModulesDirs(path.join(newDir, 'node_modules'), path.join(stage, 'node_modules'))
     }
+    console.log("tfuji: renameOverwrite", stage, newDir)
     renameOverwrite.sync(stage, newDir)
   } catch (err: unknown) {
     try {
+      console.log("tfuji: rimraf", stage)
       rimraf(stage)
     } catch {} // eslint-disable-line:no-empty
     if (util.types.isNativeError(err) && 'code' in err && err.code === 'EEXIST') {
       const { uniqueFileMap, conflictingFileNames } = getUniqueFileMap(filenames)
-      if (Object.keys(conflictingFileNames).length === 0) throw err
+      if (Object.keys(conflictingFileNames).length === 0) {
+        console.trace("tfuji: throw error")
+        throw err
+      }
       filenameConflictsLogger.debug({
         conflicts: conflictingFileNames,
         writingTo: newDir,
