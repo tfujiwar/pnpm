@@ -176,7 +176,7 @@ export interface InstallationResult {
 }
 
 export async function headlessInstall (opts: HeadlessOptions): Promise<InstallationResult> {
-  console.log("tfuji: headlessInstall")
+  // console.log("tfuji: headlessInstall")
   
   const reporter = opts.reporter
   if ((reporter != null) && typeof reporter === 'function') {
@@ -825,7 +825,7 @@ async function linkAllPkgs (
     sideEffectsCacheRead: boolean
   }
 ): Promise<void> {
-  console.log("tfuji: linkAllPkgs")
+  // console.log("tfuji: linkAllPkgs")
   await Promise.all(
     depNodes.map(async (depNode) => {
       if (!depNode.fetching) return

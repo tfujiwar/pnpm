@@ -31,7 +31,7 @@ export function createPackageStore (
   }
 ): StoreController {
 
-  console.log("tfuji: createPackageStore")
+  // console.log("tfuji: createPackageStore")
 
   const storeDir = initOpts.storeDir
   const cafs = createCafsStore(storeDir, {

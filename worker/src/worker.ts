@@ -232,7 +232,7 @@ function importPackage ({
   keepModulesDir,
   disableRelinkLocalDirDeps,
 }: LinkPkgMessage): ImportPackageResult {
-  console.log("tfuji: importPackage 2", targetDir)
+  // console.log("tfuji: importPackage 2", targetDir)
   const cacheKey = JSON.stringify({ storeDir, packageImportMethod })
   if (!cafsStoreCache.has(cacheKey)) {
     console.log(cacheKey)

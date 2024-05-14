@@ -149,7 +149,7 @@ export async function install (
   manifest: ProjectManifest,
   opts: Opts
 ): Promise<ProjectManifest> {
-  console.log("tfuji: install")
+  // console.log("tfuji: install")
   const rootDir = opts.dir ?? process.cwd()
   const { updatedProjects: projects } = await mutateModules(
     [
@@ -229,7 +229,7 @@ export async function mutateModules (
   projects: MutatedProject[],
   maybeOpts: MutateModulesOptions
 ): Promise<MutateModulesResult> {
-  console.log("tfuji: mutateModules")
+  // console.log("tfuji: mutateModules")
   const reporter = maybeOpts?.reporter
   if ((reporter != null) && typeof reporter === 'function') {
     streamParser.on('data', reporter)
@@ -297,7 +297,7 @@ export async function mutateModules (
   }
 
   async function _install (): Promise<{ updatedProjects: UpdatedProject[], stats?: InstallationResultStats }> {
-    console.log("tfuji: _install")
+    // console.log("tfuji: _install")
 
     const scriptsOpts: RunLifecycleHooksConcurrentlyOptions = {
       extraBinPaths: opts.extraBinPaths,

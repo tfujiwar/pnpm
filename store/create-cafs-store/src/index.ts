@@ -57,7 +57,7 @@ function createPackageImporter (
     cafsDir: string
   }
 ): ImportPackageFunction {
-  console.log("tfuji: createPackageImporter")
+  // console.log("tfuji: createPackageImporter")
 
   const cachedImporterCreator = opts.importIndexedPackage
     ? () => opts.importIndexedPackage!
@@ -116,7 +116,7 @@ export function createCafsStore (
     cafsLocker?: CafsLocker
   }
 ): Cafs {
-  console.log("tfuji: createCafsStore")
+  // console.log("tfuji: createCafsStore")
 
   const cafsDir = path.join(storeDir, 'files')
   const baseTempDir = path.join(storeDir, 'tmp')

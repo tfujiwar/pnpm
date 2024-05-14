@@ -22,7 +22,7 @@ function createImportPackage (packageImportMethod?: PackageImportMethod): Import
   // - auto: try to clone or hardlink the packages, if it fails, fallback to copy
   // - copy: copy the packages, do not try to link them first
 
-  console.log("tfuji: createImportPackage", packageImportMethod)
+  // console.log("tfuji: createImportPackage", packageImportMethod)
 
   switch (packageImportMethod ?? 'auto') {
   case 'clone':
@@ -45,7 +45,7 @@ function createImportPackage (packageImportMethod?: PackageImportMethod): Import
 }
 
 function createAutoImporter (): ImportIndexedPackage {
-  console.log("tfuji: createAutoImporter")
+  // console.log("tfuji: createAutoImporter")
   let auto = initialAuto
 
   return (to, opts) => auto(to, opts)
@@ -189,7 +189,7 @@ function shouldRelinkPkg (
 }
 
 function linkOrCopy (existingPath: string, newPath: string): void {
-  console.log("tfuji: linkOrCopy", existingPath, newPath)
+  // console.log("tfuji: linkOrCopy", existingPath, newPath)
   try {
     fs.linkSync(existingPath, newPath)
   } catch (err: unknown) {
@@ -199,9 +199,9 @@ function linkOrCopy (existingPath: string, newPath: string): void {
     // In some VERY rare cases (1 in a thousand), hard-link creation fails on Windows.
     // In that case, we just fall back to copying.
     // This issue is reproducible with "pnpm add @material-ui/icons@4.9.1"
+    console.log("tfuji: before fs.copyFileSync", existingPath, newPath)
     console.log("tfuji: existsSync(existingPath)", existsSync(existingPath))
     console.log("tfuji: existsSync(path.dirname(newPath))", existsSync(path.dirname(newPath)))
-    console.log("tfuji: before fs.copyFileSync")
     fs.copyFileSync(existingPath, newPath)
     console.log("tfuji: after fs.copyFileSync")
   }

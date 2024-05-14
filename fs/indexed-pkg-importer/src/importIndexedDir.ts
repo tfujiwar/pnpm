@@ -28,11 +28,11 @@ export function importIndexedDir (
       // Keeping node_modules is needed only when the hoisted node linker is used.
       moveOrMergeModulesDirs(path.join(newDir, 'node_modules'), path.join(stage, 'node_modules'))
     }
-    console.log("tfuji: renameOverwrite", stage, newDir)
+    // console.log("tfuji: renameOverwrite", stage, newDir)
     renameOverwrite.sync(stage, newDir)
   } catch (err: unknown) {
     try {
-      console.log("tfuji: rimraf", stage)
+      // console.log("tfuji: rimraf", stage)
       rimraf(stage)
     } catch {} // eslint-disable-line:no-empty
     if (util.types.isNativeError(err) && 'code' in err && err.code === 'EEXIST') {
@@ -87,7 +87,7 @@ function sanitizeFilenames (filenames: Record<string, string>): SanitizeFilename
 }
 
 function tryImportIndexedDir (importFile: ImportFile, newDir: string, filenames: Record<string, string>): void {
-  console.log("tfuji: tryImportIndexedDir", newDir)
+  // console.log("tfuji: tryImportIndexedDir", newDir)
   makeEmptyDir(newDir, { recursive: true })
   const allDirs = new Set<string>()
   Object.keys(filenames)
