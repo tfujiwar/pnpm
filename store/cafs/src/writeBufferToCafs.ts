@@ -3,6 +3,7 @@ import path from 'path'
 import util from 'util'
 import renameOverwrite from 'rename-overwrite'
 import type ssri from 'ssri'
+import { existsSync } from 'fs'
 import { verifyFileIntegrity } from './checkPkgFilesIntegrity'
 import { writeFile } from './writeFile'
 
@@ -61,6 +62,9 @@ export function optimisticRenameOverwrite (temp: string, fileDest: string): void
     renameOverwrite.sync(temp, fileDest)
   } catch (err: unknown) {
     console.log("tfuji: optimisticRenameOverwrite fail", temp, fileDest)
+    console.log("tfuji: optimisticRenameOverwrite fail existsSync(existingPath)", existsSync(temp))
+    console.log("tfuji: optimisticRenameOverwrite fail existsSync(path.dirname(newPath))", existsSync(path.dirname(fileDest)))
+    console.log("tfuji: optimisticRenameOverwrite fail", JSON.stringify(err, ["message", "arguments", "type", "name"]))
     if (!(util.types.isNativeError(err) && 'code' in err && err.code === 'ENOENT') || !fs.existsSync(fileDest)) throw err
     // The temporary file path is created by appending the process ID to the target file name.
     // This is done to avoid lots of random crypto number generations.
