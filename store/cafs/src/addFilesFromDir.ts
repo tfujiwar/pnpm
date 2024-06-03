@@ -18,6 +18,8 @@ export function addFilesFromDir (
     readManifest?: boolean
   } = {}
 ): AddToStoreResult {
+  // console.log("tfuji: addFilesFromDir", dirname)
+
   const filesIndex: FilesIndex = {}
   let manifest: DependencyManifest | undefined
   let files: File[]

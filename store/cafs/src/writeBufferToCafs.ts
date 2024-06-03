@@ -15,6 +15,7 @@ export function writeBufferToCafs (
   integrity: ssri.IntegrityLike
 ): { checkedAt: number, filePath: string } {
   fileDest = path.join(cafsDir, fileDest)
+  // console.log("tfuji: writeBufferToCafs", fileDest)
   if (locker.has(fileDest)) {
     return {
       checkedAt: locker.get(fileDest)!,
@@ -59,6 +60,7 @@ export function optimisticRenameOverwrite (temp: string, fileDest: string): void
   try {
     renameOverwrite.sync(temp, fileDest)
   } catch (err: unknown) {
+    console.log("tfuji: optimisticRenameOverwrite fail", temp, fileDest)
     if (!(util.types.isNativeError(err) && 'code' in err && err.code === 'ENOENT') || !fs.existsSync(fileDest)) throw err
     // The temporary file path is created by appending the process ID to the target file name.
     // This is done to avoid lots of random crypto number generations.

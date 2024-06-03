@@ -22,6 +22,8 @@ export function addFilesFromTarball (
   let manifestBuffer: Buffer | undefined
 
   for (const [relativePath, { mode, offset, size }] of files) {
+    // console.log("tfuji: addFilesFromTarball", relativePath)
+
     if (ignore(relativePath)) continue
 
     const fileBuffer = tarContent.slice(offset, offset + size)

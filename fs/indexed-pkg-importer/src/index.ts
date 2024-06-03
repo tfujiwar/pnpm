@@ -59,7 +59,7 @@ function createAutoImporter (): ImportIndexedPackage {
     // Hence, we prefer reflinks by default only on Linux and macOS.
     if (process.platform !== 'win32') {
       try {
-        console.log("clonePkg")
+        // console.log("tfuji: clonePkg")
         const _clonePkg = clonePkg.bind(null, createCloneFunction())
         if (!_clonePkg(to, opts)) return undefined
         packageImportMethodLogger.debug({ method: 'clone' })
