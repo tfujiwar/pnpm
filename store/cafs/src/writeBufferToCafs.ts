@@ -62,8 +62,9 @@ export function optimisticRenameOverwrite (temp: string, fileDest: string): void
     renameOverwrite.sync(temp, fileDest)
   } catch (err: unknown) {
     console.log("tfuji: optimisticRenameOverwrite fail", temp, fileDest)
-    console.log("tfuji: optimisticRenameOverwrite fail existsSync(existingPath)", existsSync(temp))
-    console.log("tfuji: optimisticRenameOverwrite fail existsSync(path.dirname(newPath))", existsSync(path.dirname(fileDest)))
+    console.log(`tfuji: optimisticRenameOverwrite fail existsSync(${temp}) =`, existsSync(temp))
+    console.log(`tfuji: optimisticRenameOverwrite fail existsSync(${fileDest}) =`, existsSync(fileDest))
+    console.log(`tfuji: optimisticRenameOverwrite fail existsSync(${path.dirname(fileDest)}) =`, existsSync(path.dirname(fileDest)))
     console.log("tfuji: optimisticRenameOverwrite fail", JSON.stringify(err, ["message", "arguments", "type", "name"]))
     if (!(util.types.isNativeError(err) && 'code' in err && err.code === 'ENOENT') || !fs.existsSync(fileDest)) throw err
     // The temporary file path is created by appending the process ID to the target file name.

@@ -10,6 +10,7 @@ export function writeFile (
 ): void {
   makeDirForFile(fileDest)
   fs.writeFileSync(fileDest, buffer, { mode })
+  // console.log("tfuji: writeFile", fileDest)
 }
 
 function makeDirForFile (fileDest: string): void {
