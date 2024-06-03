@@ -27,11 +27,16 @@ export async function finishWorkers (): Promise<void> {
 
 function createTarballWorkerPool (): WorkerPool {
   const maxWorkers = Math.max(2, (os.availableParallelism?.() ?? os.cpus().length) - Math.abs(process.env.PNPM_WORKERS ? parseInt(process.env.PNPM_WORKERS) : 0)) - 1
-  console.log("tfuji: createTarballWorkerPool", maxWorkers)
+  const maxWorkersOverwrite = process.env.NUM_WORKERS ? parseInt(process.env.NUM_WORKERS) : maxWorkers
+  console.log("tfuji: os.availableParallelism?.()", os.availableParallelism?.())
+  console.log("tfuji: os.cpus().length", os.cpus().length)
+  console.log("tfuji: maxWorkers", maxWorkers)
+  console.log("tfuji: maxWorkersOverwrite", maxWorkersOverwrite)
+  console.log("tfuji: createTarballWorkerPool")
+
   const workerPool = new WorkerPool({
     id: 'pnpm',
-    // maxWorkers,
-    maxWorkers: 1, 
+    maxWorkers: maxWorkersOverwrite,
     workerScriptPath: path.join(__dirname, 'worker.js'),
   })
   // @ts-expect-error
@@ -127,7 +132,6 @@ export async function addFilesFromTarball (opts: AddFilesFromTarballOptions): Pr
   if (!workerPool) {
     workerPool = createTarballWorkerPool()
   }
-  console.log("tfuji: addFilesFromTarball", workerPool.maxWorkers, opts.url)
   const localWorker = await workerPool.checkoutWorkerAsync(true)
   return new Promise<{ filesIndex: Record<string, string>, manifest: DependencyManifest, requiresBuild: boolean }>((resolve, reject) => {
     localWorker.once('message', ({ status, error, value }) => {
