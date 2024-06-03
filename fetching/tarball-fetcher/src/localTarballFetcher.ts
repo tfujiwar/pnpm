@@ -13,6 +13,8 @@ interface Resolution {
 }
 
 export function createLocalTarballFetcher (): FetchFunction {
+  console.log("tfuji: createLocalTarballFetcher")
+
   const fetch = (cafs: Cafs, resolution: Resolution, opts: FetchOptions) => {
     const tarball = resolvePath(opts.lockfileDir, resolution.tarball.slice(5))
     const buffer = gfs.readFileSync(tarball)
